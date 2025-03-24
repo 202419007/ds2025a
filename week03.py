@@ -1,6 +1,5 @@
-groups = ['HOT', 'Seventeen', 'Black Pink', 'NJZ']
-#ratings = [1, 2, 4, 3, 100]
-ratings = [1, 2, 4, 3]
-
-groups_rating = list(zip(groups, ratings))
-print(groups_rating)
+cities = ['Incheon', 'Seoul', 'Incheon', 'Incheon', 'Gwangju']
+cities = set(cities) #dict, set은 순서 상관X
+cities.add('Incheon')
+cities.add('Suwon')
+print(cities)
