@@ -1,34 +1,33 @@
-class Node:
-    def __init__(self, data, linke=None):
-        self.data = data
-        self.link = linke
-
 class Stack:
     def __init__(self):
-        self.top = None
+        self.items = list()
 
-
-    def push(self, data):
-        node = Node(data)
-        if self.top is None:
-            self.top = node
-        else:
-            node.link = self.top
-            self.top = node
-
+    def push(self, item):
+        self.items.append(item)
 
     def pop(self):
-        if self.top is None:
-            # raise IndexError("스택이 비어 있습니다.")
-            return "Stack is empty!"
-        popped_node = self.top
-        self.top = self.top.link
-        popped_node.link = None
-        return popped_node.data
+        return self.items.pop()
+
+    def size(self):
+        return len(self.items)
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+    def peek(self):
+        return self.items[-1]
+
 
 s1 = Stack()
-print(s1.pop())
+s2 = Stack()
+print(s1.is_empty())
 s1.push("Data structure")
+print(s1.is_empty())
+print(s2.is_empty())
 s1.push("Database")
+print(s1.size())
+print(s1.peek())
+print(s1.size())
 print(s1.pop())
-print(s1.pop())
+print(s1.size())
+print(s1.peek())
