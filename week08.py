@@ -28,48 +28,56 @@ class TreeNode:
 		self.data = None
 		self.right = None
 
-# BST
-if __name__ == "__main__":
-    numbers = [10, 15, 8, 3, 9]
-    root = None
 
+def insert(root, value):
     node = TreeNode()
-    node.data = numbers[0]  # 10
-    root = node
+    node.data = value
 
-    for number in numbers[1:]:
-        node = TreeNode()
-        node.data = number
+    if root is None:
+        return node
 
-        current = root
-        while True:
-            if number < current.data:
-                if current.left is None:
-                    current.left = node
-                    break
-                current = current.left  # 이동
-            else:
-                if current.right is None:
-                    current.right = node
-                    break
-                current = current.right  # 이동
-
-    print('BST 구성 완료')
-    post_order(root)
-
-    find_number = int(input())
     current = root
     while True:
-        if find_number == current.data:
-            print(f"{find_number}을(를) 찾았습니다")
-            break
-        elif find_number < current.data:
+        if number < current.data:
             if current.left is None:
-                print(f"{find_number}이(가) 존재하지 않습니다")
+                current.left = node
                 break
-            current = current.left
+            current = current.left  # 이동
         else:
             if current.right is None:
-                print(f"{find_number}이(가) 존재하지 않습니다")
+                current.right = node
                 break
-            current = current.right
+            current = current.right  # 이동
+    return root
+
+
+if __name__ == "__main__":
+    numbers = [10, 15, 8, 3, 9, 100, 7, 13]
+    root = None
+
+    for number in numbers:
+        root = insert(root, number)
+
+    print('BST 구성 완료')
+    pre_order(root)  # 전위
+    print()
+    in_order(root)  # 중위
+    print()
+    post_order(root)  # 후위
+
+    # find_number = int(input())  # search
+    # current = root
+    # while True:
+    #     if find_number == current.data:
+    #         print(f"{find_number}을(를) 찾았습니다")
+    #         break
+    #     elif find_number < current.data:
+    #         if current.left is None:
+    #             print(f"{find_number}이(가) 존재하지 않습니다")
+    #             break
+    #         current = current.left
+    #     else:
+    #         if current.right is None:
+    #             print(f"{find_number}이(가) 존재하지 않습니다")
+    #             break
+    #         current = current.right
