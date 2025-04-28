@@ -1,9 +1,3 @@
-class TreeNode:
-	def __init__(self):
-		self.left = None
-		self.data = None
-		self.right = None
-
 def pre_order(node):  # 전위
     if node is None:
         return
@@ -28,34 +22,42 @@ def post_order(node):  # 후위, node1
     print(node.data, end="->")  # hw(node4) -> node2(r)...반복
 
 
-node1 = TreeNode()
-node1.data = 'hs'
+class TreeNode:
+	def __init__(self):
+		self.left = None
+		self.data = None
+		self.right = None
 
-node2 = TreeNode()
-node2.data = 'sl'
-node1.left = node2
+# BST
+if __name__ == "__main__":
+    numbers = [10, 15, 8, 3, 9]
+    root = None
 
-node3 = TreeNode()
-node3.data = 'mb'
-node1.right = node3
+    node = TreeNode()
+    node.data = numbers[0]  # 10
+    root = node
 
-node4 = TreeNode()
-node4.data = 'hw'
-node2.left = node4
+    for number in numbers[1:]:  # 15
+        node = TreeNode()
+        node.data = number
 
-node5 = TreeNode()
-node5.data = 'zz'
-node2.right = node5
+        current = root  # current = 이동
+        while True:
+            if number < current.data:  # 작으면 left
+                if current.left is None:
+                    current.left = node
+                    break
+                current = current.left  # 이동
+            else:
+                if current.right is None:
+                    current.right = node
+                    break
+                current = current.left  # 이동
 
-node6 = TreeNode()
-node6.data = 'sm'
-node3.left = node6
+    print('BST 구성 완료')
 
-# print(node6.data)
-# print(node1.right.left.data)
-
-pre_order(node1)
-print()
-in_order(node1)
-print()
-post_order(node1)
+    pre_order(root)  # 전위
+    print()
+    in_order(root)  # 중위
+    print()
+    post_order(root)  # 후위
