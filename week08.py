@@ -1,4 +1,4 @@
-def pre_order(node):  # 전위
+def pre_order(node):
     if node is None:
         return
     print(node.data, end="->")
@@ -6,7 +6,7 @@ def pre_order(node):  # 전위
     pre_order(node.right)
 
 
-def in_order(node):  # 중위
+def in_order(node):
     if node is None:
         return
     in_order(node.left)
@@ -14,12 +14,12 @@ def in_order(node):  # 중위
     in_order(node.right)
 
 
-def post_order(node):  # 후위, node1
-    if node is None:  # 지나감
+def post_order(node):
+    if node is None:
         return
-    post_order(node.left)  # 7~12 복제, node2(l) -> node4(l) -> None
-    post_order(node.right)  # node4(r)
-    print(node.data, end="->")  # hw(node4) -> node2(r)...반복
+    post_order(node.left)
+    post_order(node.right)
+    print(node.data, end="->")
 
 
 class TreeNode:
@@ -37,13 +37,13 @@ if __name__ == "__main__":
     node.data = numbers[0]  # 10
     root = node
 
-    for number in numbers[1:]:  # 15
+    for number in numbers[1:]:
         node = TreeNode()
         node.data = number
 
-        current = root  # current = 이동
+        current = root
         while True:
-            if number < current.data:  # 작으면 left
+            if number < current.data:
                 if current.left is None:
                     current.left = node
                     break
@@ -52,12 +52,24 @@ if __name__ == "__main__":
                 if current.right is None:
                     current.right = node
                     break
-                current = current.left  # 이동
+                current = current.right  # 이동
 
     print('BST 구성 완료')
+    post_order(root)
 
-    pre_order(root)  # 전위
-    print()
-    in_order(root)  # 중위
-    print()
-    post_order(root)  # 후위
+    find_number = int(input())
+    current = root
+    while True:
+        if find_number == current.data:
+            print(f"{find_number}을(를) 찾았습니다")
+            break
+        elif find_number < current.data:
+            if current.left is None:
+                print(f"{find_number}이(가) 존재하지 않습니다")
+                break
+            current = current.left
+        else:
+            if current.right is None:
+                print(f"{find_number}이(가) 존재하지 않습니다")
+                break
+            current = current.right
