@@ -33,17 +33,14 @@ def search(find_number):
     current = root
     while True:
         if find_number == current.data:
-            print(f"{find_number}을(를) 찾았습니다")
-            break
+            return True
         elif find_number < current.data:
             if current.left is None:
-                print(f"{find_number}이(가) 존재하지 않습니다")
-                break
+                return  False
             current = current.left
         else:
             if current.right is None:
-                print(f"{find_number}이(가) 존재하지 않습니다")
-                break
+                return  False
             current = current.right
 
 
@@ -77,11 +74,10 @@ if __name__ == "__main__":
         root = insert(root, number)
 
     print('BST 구성 완료')
-    # pre_order(root)  # 전위
-    # print()
-    # in_order(root)  # 중위
-    # print()
-    post_order(root)  # 후위
+    post_order(root)
     print()
     find_number = int(input("찾는 수는? "))
-    search(find_number)
+    if search(find_number):
+        print(f"{find_number}을(를) 찾았습니다")
+    else:
+        print(f"{find_number}이(가) 존재하지 않습니다")
