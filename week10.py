@@ -29,8 +29,7 @@ def post_order(node):
     print(node.data, end="->")
 
 
-def search():
-    find_number = int(input("찾는 수는? "))  # search
+def search(find_number):
     current = root
     while True:
         if find_number == current.data:
@@ -78,11 +77,11 @@ if __name__ == "__main__":
         root = insert(root, number)
 
     print('BST 구성 완료')
-    pre_order(root)  # 전위
-    print()
-    in_order(root)  # 중위
-    print()
+    # pre_order(root)  # 전위
+    # print()
+    # in_order(root)  # 중위
+    # print()
     post_order(root)  # 후위
     print()
-    search()
-
+    find_number = int(input("찾는 수는? "))
+    search(find_number)
